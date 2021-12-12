@@ -4,12 +4,6 @@ plugins {
 	id 'java'
 }
 
-tasks.bootJar {
-    archiveBaseName.set("foo")
-    archiveVersion.set("1.0")
-}
-
-
 group = 'com.app'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
