@@ -1,13 +1,11 @@
 package com.app.model;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name="address_table")
+
+
 public class Address {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int addressId;
     private String addressLine;
     private String city;

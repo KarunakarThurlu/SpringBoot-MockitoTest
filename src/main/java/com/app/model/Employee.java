@@ -1,22 +1,18 @@
 package com.app.model;
 
-import javax.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name="employee_table")
+
 public class Employee {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int empId;
     private String empName;
     private String empEmail;
     private String empPhone;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name="emp_id_fk")
+
     private Set<Address> address = new HashSet<>();
 
     public Employee(int empId, String empName, String empEmail, String empPhone, Set<Address> address) {

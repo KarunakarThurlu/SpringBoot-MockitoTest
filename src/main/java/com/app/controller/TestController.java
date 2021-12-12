@@ -33,29 +33,28 @@ import java.util.Set;
 @RequestMapping("/api")
 public class TestController {
 
-	@Autowired
-	private EmployeeRepository repo;
+
 
 	@GetMapping("/foo")
 	public String foo() {
 		return "hello";
 	}
 
-	@PostMapping("/save")
-	public Response<Employee> save(@RequestBody Employee employee) {
-	 Employee emp=	repo.save(employee);
-		Set<Address> addr = emp.getAddress();
-		emp.setAddress(addr);
-		return new Response<Employee>(HttpStatus.OK, emp, "success");
-	}
-
-	@PostMapping("/update")
-	public Response<Employee> update(@RequestBody Employee employee) {
-		Employee emp=	repo.save(employee);
-		Set<Address> addr = emp.getAddress();
-		emp.setAddress(addr);
-		return new Response<Employee>(HttpStatus.OK, emp, "success");
-	}
+//	@PostMapping("/save")
+//	public Response<Employee> save(@RequestBody Employee employee) {
+//	 Employee emp=	repo.save(employee);
+//		Set<Address> addr = emp.getAddress();
+//		emp.setAddress(addr);
+//		return new Response<Employee>(HttpStatus.OK, emp, "success");
+//	}
+//
+//	@PostMapping("/update")
+//	public Response<Employee> update(@RequestBody Employee employee) {
+//		Employee emp=	repo.save(employee);
+//		Set<Address> addr = emp.getAddress();
+//		emp.setAddress(addr);
+//		return new Response<Employee>(HttpStatus.OK, emp, "success");
+//	}
 
 	//reading excelfile
 	@RequestMapping(value=("/upload"),headers=("content-type=multipart/*"),method=RequestMethod.POST)
