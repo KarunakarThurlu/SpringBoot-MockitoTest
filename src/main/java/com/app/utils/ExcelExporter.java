@@ -38,7 +38,7 @@ public class ExcelExporter {
 
     public ByteArrayOutputStream export()throws Exception {
         try(ByteArrayOutputStream bos=new ByteArrayOutputStream()){
-            writeHeaderline();
+            //writeHeaderline();
             writeDataLines();
             outputworkbook.write(bos);
             outputworkbook.close();
@@ -54,6 +54,7 @@ public class ExcelExporter {
     }
 
     private void writeDataLines() {
+        outputsheet=outputworkbook.createSheet("Sheet1");
         Sheet sheet = workbook.getSheetAt(0);
         DataFormatter formatter = new DataFormatter();
         CellStyle cs= outputworkbook.createCellStyle();
@@ -63,7 +64,7 @@ public class ExcelExporter {
         cs.setAlignment(HorizontalAlignment.CENTER);
 
         sheet.forEach(row -> {
-            Row r=outputsheet.createRow(row.getRowNum()+1);
+            Row r=outputsheet.createRow(row.getRowNum());
             r.setRowStyle(cs);
             row.forEach(cell -> {
                 int cloumnIndex=cell.getColumnIndex();
@@ -75,11 +76,12 @@ public class ExcelExporter {
                         c.setCellValue(cell.getNumericCellValue());
                 }else{
                     if(cloumnIndex==1) {
-                        DateFormat df = new SimpleDateFormat("dd MMM yyyy");
+                        DateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
                         Date d=cell.getDateCellValue();
                         c.setCellValue(df.format(d));
                     }else {
-                        DateFormat tf = new SimpleDateFormat("hh:mm");
+                        //24 hour format
+                        DateFormat tf = new SimpleDateFormat("HH:mm");
                         Date t=cell.getDateCellValue();
                         c.setCellValue(tf.format(t));
                     }
